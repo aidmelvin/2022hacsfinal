@@ -1,0 +1,18 @@
+{
+  "name": "fakedata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^6.3.1",
+    "pg": "^8.7.3",
+    "sequelize": "^6.19.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}
