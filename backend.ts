@@ -12,23 +12,6 @@ let corsOptions = {
 
 app.use(cors(corsOptions));
 
-export type RouteHandler = (request: Request, response: Response) => void;
-
-const loginHandler: RouteHandler = (req, res) => {
-  let body: string = "";
-  let parsedBody: JSON;
-
-  req.on('data', (chunk) => {
-    body += chunk;
-  });
-  req.on('end', () => {
-    parsedBody = JSON.parse(body);
-    console.log('POSTed: ' + body);
-    res.send('{"message": "received the get request"}');
-  })
-    //console.log(req);
-}
-
 app.get("/", (req, res) => {
     res.sendFile("index.html", {root: '.'});
 });
@@ -41,7 +24,15 @@ app.get("/static/*", (req, res) => {
     res.sendFile(req.path, {root: "."});
 });
 
-app.post('/login', loginHandler);
+app.post('/login', (req, res) => {
+    console.log("received  post request");
+    res.redirect("/incorrect");
+});
+
+app.get("/incorrect", (req, res) => {
+    console.log('redirected');
+    res.sendFile("incorrect.html", {root: '.'});
+});
 
 app.listen(5000);
 

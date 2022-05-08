@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Login</title>
+        <link rel="stylesheet" href="static/styles.css">
+        <script type="text/javascript" src="static/fns.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <h1>Stratton Oakmont IT Administrator Login</h1>
+        <p></p>
+        <!-- <form method="get" action="/login" target="_blank">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="uname"><br>
+            <label for="password">Last name:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Submit">
+        </form> -->
+
+        Username:<br>
+        <input type="text" id="username" name="uname"><br>
+        Password:<br>
+        <input type="password" id="password" name="password"><br><br>
+        <button onclick="sendLoginInfo()">Submit</button>
+        <p style="color: red">Username or password incorrect</p>
+    </body>
+</html>
