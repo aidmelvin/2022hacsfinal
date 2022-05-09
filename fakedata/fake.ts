@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize } from "sequelize/types";
+import { DataTypes, Sequelize } from "sequelize";
 import faker from "@faker-js/faker"
 
 /**
@@ -10,12 +10,12 @@ import faker from "@faker-js/faker"
 const FAKE_ENTRIES_MIN = 100
 const FAKE_ENTRIES_MAX = 150
 
-function getRndInteger(min, max) {
+function getRndInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min) ) + min;
 }
 
 (async () => {
-    const sql = new Sequelize("postgres://postgres:password@localhost:5432/post");
+    const sql = new Sequelize("postgres://postgres:postgres@localhost:5432/postgres");
     await sql.authenticate();
     console.log("Authenticated with DB");
 
@@ -47,15 +47,21 @@ function getRndInteger(min, max) {
 
     // Generate fake data
     const numberEntriesToAdd = getRndInteger(FAKE_ENTRIES_MIN, FAKE_ENTRIES_MAX);
+    const userObjs = []
+
     for (var i = 0; i < numberEntriesToAdd; i++) {
-        User.create({
-            name: `${faker.name.firstName()} ${faker.name.middleName()} ${faker.name.lastName()}}`,
+        userObjs.push({
+            name: `${faker.name.firstName()} ${faker.name.middleName()} ${faker.name.lastName()}`,
             phoneNumber: faker.phone.phoneNumber(),
             address: faker.address.streetAddress(),
             email: faker.internet.email(),
             creditCardNumber: faker.finance.creditCardNumber()
         })
     }
+
+    // Create users
+    await User.bulkCreate(userObjs)
+    console.log("Added users!")
 
     // Save data and close DB connection
     await sql.close()
