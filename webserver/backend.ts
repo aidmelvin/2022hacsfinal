@@ -46,6 +46,8 @@ app.get("/incorrect", (req, res) => {
     res.sendFile("incorrect.html", {root: '.'});
 });
 
-app.listen(80);
 
-console.log("listening on port 5000");
+const PORT = 80
+app.listen(PORT);
+
+console.log("listening on port " + PORT);
