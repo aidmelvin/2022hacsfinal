@@ -30,7 +30,7 @@ sudo lxc-start  -n "$CONTAINER_NAME"
 IPV4="-"
 while [[ $IPV4 == "-" ]]
 do
-  IPV4=$(sudo lxc-ls -f -F name,IPV4 | grep -w "^$CONTAINER_NAME" | cut -d' ' -f2)
+  IPV4=$(sudo lxc-ls -f -F name,IPV4 | grep -w "^$CONTAINER_NAME" | awk '{ print $2 }')
   sleep 1
 done
 

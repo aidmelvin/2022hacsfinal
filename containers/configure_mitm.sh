@@ -30,5 +30,5 @@ then
 fi
 
 AUTO_ACCESS_ATTMEPTS=2
-IPV4=$(sudo lxc-ls -f -F name,IPV4 | grep -w "^$CONTAINER_NAME" | cut -d' ' -f2)
+IPV4=$(sudo lxc-ls -f -F name,IPV4 | grep -w "^$CONTAINER_NAME" | awk '{ print $2 }')
 sudo forever -l $MITM_LOG_FILE start $MITM_JS_PATH -n $CONTAINER_NAME -i $IPV4 -p $MITM_PORT --auto-access --auto-access-fixed $AUTO_ACCESS_ATTMEPTS
